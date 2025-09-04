@@ -1,20 +1,60 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Leads from '@/modulos/Leads/Leads.vue'
+import Dashboard from '@/modulos/Dashboard/Dashboard.vue'
+import Quotes from '@/modulos/Quotes/Quotes.vue'
+import Mail from '@/modulos/Mail/Mail.vue'
+import Configuration from '@/modulos/Configuration/Configuration.vue'
+import Settings from '@/modulos/Settings/Settings.vue'
+import Activities from '@/modulos/Activities/Activities.vue'
+import Contacts from '@/modulos/Contacts/Contacts.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'Dashboard',
+    component: Dashboard
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/leads',
+    name: 'leads',
+    component: Leads
+  },
+
+  {
+    path: '/quotes',
+    name: 'quotes',
+    component: Quotes
+  },
+
+  {
+    path: '/activities',
+    name: 'activities',
+    component: Activities
+  },
+
+  {
+    path: '/contacts',
+    name: 'contacts',
+    component: Contacts
+  },
+  {
+    path: '/mail',
+    name: 'mail',
+    component: Mail
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: Settings
+  },
+
+  {
+    path: '/configuration',
+    name: 'configuration',
+    component: Configuration
+  },
+  
+
 ]
 
 const router = createRouter({

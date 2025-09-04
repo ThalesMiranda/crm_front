@@ -1,30 +1,30 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <v-app>
+    <v-main class="bg-grayFix">
+      <nav-bar />
+      <drawer />
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-}
+<script>
+import Drawer from './modulos/Layout/Drawer.vue';
+import NavBar from './modulos/Layout/NavBar.vue'
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default {
+  components: { NavBar, Drawer },
+  name: 'App',
 
-nav a.router-link-exact-active {
-  color: #42b983;
+  data: () => ({
+    //
+  }),
 }
+</script>
+
+<style scoped>
+  .bg-grayFix{
+    background-color: rgb(243, 244, 246);
+  }
 </style>
