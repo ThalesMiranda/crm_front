@@ -27,3 +27,6 @@
 .icon-products::before { content: "\E916"; }
 .icon-settings::before { content: "\E915"; }
 .icon-configuration::before { content: "\E901"; }
+.icon-print:before { content: "\E936"; }
+.icon-edit:before { content: "\E903"; }
+.icon-trash:before { content: "\E905"; }

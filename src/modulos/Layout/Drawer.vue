@@ -3,8 +3,8 @@
     permanent
     expand-on-hover
     rail
-    rail-width="80"
-    class="pt-2"
+    rail-width="60"
+    class="pt-5"
   >
     <v-list density="default" nav>
 
@@ -26,11 +26,20 @@
         </template>
       </v-list-item>
 
-      <v-list-item to="/mail" title="Mail">
-        <template #prepend>
-          <span class="icon icon-mail text-xl mr-7"></span>
-        </template>
-      </v-list-item>
+    <v-list-group value="mail">
+      <template #activator="{ props }">
+        <v-list-item v-bind="props" title="Mail">
+          <template #prepend>
+            <span class="icon icon-mail text-xl mr-7"></span>
+          </template>
+        </v-list-item>
+      </template>
+
+      <v-list-item to="/mail/inbox" title="Inbox"></v-list-item>
+      <v-list-item to="/mail/draft" title="Draft"></v-list-item>
+      <v-list-item to="/mail/outbox" title="Outbox"></v-list-item>
+      <v-list-item to="/mail/sent" title="Sent"></v-list-item>
+    </v-list-group>
 
       <v-list-item to="/activities" title="Activities">
         <template #prepend>
@@ -65,20 +74,20 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 24px;
-  height: 24px;
+  width:  16px;
+  height: 16px;
 }
 
 /* padding custom */
 .v-list-item {
-  padding-top: 18px !important;
-  padding-bottom: 18px !important;
-  padding-left: 18px !important;
-  padding-right: 18px !important;
+  padding-top:    12px !important;
+  padding-bottom: 12px !important;
+  padding-left:   12px !important;
+  padding-right:  24px !important;
 }
 
 .v-list-item-title {
-  font-size: 18px !important;
+  font-size: 14px !important;
   color: rgb(75 85 99);
 }
 

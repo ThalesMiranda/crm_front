@@ -1,0 +1,58 @@
+<template>
+  <v-breadcrumbs :items="items" class="mb-2">
+    <template v-slot:divider>
+      /
+    </template>
+  </v-breadcrumbs>
+</template>
+
+<script>
+export default {
+  name: "Breadcrumbs",
+  computed: {
+    items() {
+      const route = this.$route
+      const crumbs = [{ title: "Dashboard", to: "/" }]
+
+      switch (route.name) {
+        case "leads":
+          crumbs.push({ title: "Leads", to: "/leads" })
+          break
+        case "quotes":
+          crumbs.push({ title: "Quotes", to: "/quotes" })
+          break
+        case "activities":
+          crumbs.push({ title: "Activities", to: "/activities" })
+          break
+        case "contacts":
+          crumbs.push({ title: "Contacts", to: "/contacts" })
+          break
+        case "settings":
+          crumbs.push({ title: "Settings", to: "/settings" })
+          break
+        case "configuration":
+          crumbs.push({ title: "Configuration", to: "/configuration" })
+          break
+        case "mail-inbox":
+          crumbs.push({ title: "Mail", to: "/mail" })
+          crumbs.push({ title: "Inbox", to: "/mail/inbox" })
+          break
+        case "mail-draft":
+          crumbs.push({ title: "Mail", to: "/mail" })
+          crumbs.push({ title: "Draft", to: "/mail/draft" })
+          break
+        case "mail-outbox":
+          crumbs.push({ title: "Mail", to: "/mail" })
+          crumbs.push({ title: "Outbox", to: "/mail/outbox" })
+          break
+        case "mail-sent":
+          crumbs.push({ title: "Mail", to: "/mail" })
+          crumbs.push({ title: "Sent", to: "/mail/sent" })
+          break
+      }
+
+      return crumbs
+    }
+  }
+}
+</script>

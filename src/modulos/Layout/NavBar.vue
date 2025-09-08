@@ -3,7 +3,8 @@
     color="white"
     density="comfortable"
     flat
-    class="pl-1 pt-1"
+    class="pl-4 pt-1"
+     height="60"
   >
 <v-img
   class="logo-fixa"
@@ -15,31 +16,9 @@
 
     <v-spacer></v-spacer>
 
-    <!-- <v-responsive max-width="450">
-      <v-text-field
-        bg-color="grey-darken-3"
-        density="compact"
-        flat
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        placeholder="Mega Search"
-        rounded="lg"
-        variant="solo-filled"
-      ></v-text-field>
-    </v-responsive> -->
-
     <v-spacer></v-spacer>
-
-    <!-- <v-btn
-      class="mx-2"
-      color="blue"
-      icon="mdi-plus"
-      size="40"
-      variant="flat"
-    ></v-btn> -->
-
     <v-btn
-      icon="mdi-white-balance-sunny"
+      icon="fa-solid fa-user"
       class="mx-1"
     ></v-btn>
 
