@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <header-title :titulo="'Leads'" :botaoTexto="'Novo Lead'"/>
-    <datatable/>
+    <!-- <datatable/> -->
   </v-container>
 </template>
 
