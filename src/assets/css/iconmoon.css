@@ -30,3 +30,5 @@
 .icon-print:before { content: "\E936"; }
 .icon-edit:before { content: "\E903"; }
 .icon-trash:before { content: "\E905"; }
+.icon-kanban-view:before { content: "\E930"; }
+.icon-table-view:before { content: "\E92E"; }
