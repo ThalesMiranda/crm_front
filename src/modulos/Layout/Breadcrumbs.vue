@@ -24,8 +24,19 @@ export default {
         case "activities":
           crumbs.push({ title: "Activities", to: "/activities" })
           break
-        case "contacts":
-          crumbs.push({ title: "Contacts", to: "/contacts" })
+        case "contacts-persons":
+          crumbs.push({ title: "Contact", to: "/contacts" })
+          crumbs.push({ title: "Persons", to: "/contacts/persons" })
+          break
+        case "contacts-organizations":
+          crumbs.push({ title: "Contact", to: "/contacts" })
+          crumbs.push({ title: "Organizations", to: "/contacts/organizations" })
+          break
+        case "contacts-create-person":
+          crumbs.push({ title: "Contact", to: "/contacts" })
+          crumbs.push({ title: "Persons", to: "/contacts/persons" })
+          crumbs.push({ title: "Create", to: "/contacts/persons/create-person" })
+
           break
         case "settings":
           crumbs.push({ title: "Settings", to: "/settings" })

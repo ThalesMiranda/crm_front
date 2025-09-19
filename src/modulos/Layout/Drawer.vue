@@ -41,17 +41,23 @@
       <v-list-item to="/mail/sent" title="Sent"></v-list-item>
     </v-list-group>
 
-      <v-list-item to="/activities" title="Activities">
-        <template #prepend>
-          <span class="icon icon-activities text-xl mr-7"></span>
-        </template>
-      </v-list-item>
+    <v-list-item to="/activities" title="Activities">
+      <template #prepend>
+        <span class="icon icon-activities text-xl mr-7"></span>
+      </template>
+    </v-list-item>
 
-      <v-list-item to="/contacts" title="Contacts">
-        <template #prepend>
-          <span class="icon icon-contacts text-xl mr-7"></span>
-        </template>
-      </v-list-item>
+    <v-list-group value="contacts">
+      <template #activator="{ props }">
+        <v-list-item v-bind="props" title="Contacts">
+          <template #prepend>
+            <span class="icon icon-contacts text-xl mr-7"></span>
+          </template>
+        </v-list-item>
+      </template>
+      <v-list-item to="/contacts/persons" title="Persons"></v-list-item>
+      <v-list-item to="/contacts/organizations" title="Organizations"></v-list-item>
+    </v-list-group>
 
       <v-list-item to="/settings" title="Settings">
         <template #prepend>
