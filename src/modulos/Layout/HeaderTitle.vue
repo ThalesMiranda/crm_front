@@ -7,7 +7,7 @@
       </v-col>
 
       <v-col class="d-flex justify-end" cols="auto">
-        <v-btn color="primary" @click="goToRoute">
+        <v-btn color="primary" @click="$emit('action-button')">
           {{ botaoTexto }}
         </v-btn>
       </v-col>
@@ -32,18 +32,8 @@ export default {
       type: String,
       required: true
     },
-    rota: {
-      type: String,
-      required: false,
-    }
   },
-  methods: {
-    goToRoute() {
-      if (this.rota) {
-        this.$router.push({ name: this.rota });
-      }
-    }
-  }
+  emits: ['action-button'],
 }
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+  <router-link :to="{ name: 'leads_details', params: { id: lead.id } }" class="text-decoration-none">
   <v-card class="lead-card" elevation="0">
     <div class="d-flex align-center">
       <v-avatar color="blue-lighten-2" size="40" class="mr-3">
@@ -25,6 +26,8 @@
       </v-chip>
     </div>
   </v-card>
+  </router-link>
+
 </template>
 
 <script>

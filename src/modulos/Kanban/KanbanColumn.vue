@@ -6,6 +6,7 @@
       group="leads"
       item-key="id"
       class="kanban-list"
+      @change="onLeadMove" 
     >
       <template #item="{ element }">
         <LeadCard :lead="element" />
@@ -31,6 +32,22 @@ export default {
       required: true,
     },
   },
+  emits: ['lead-updated'], // Declara o evento que será emitido
+  methods: {
+    onLeadMove(event) {
+      // O evento 'added' ocorre quando um card é solto nesta coluna vindo de outra.
+      if (event.added) {
+        const movedLead = event.added.element;
+        const newStatus = this.title;
+
+        // Emitimos os dados do lead movido e o novo status para o componente pai
+        this.$emit('lead-updated', {
+          id: movedLead.id,
+          new_pipeline_status: newStatus,
+        });
+      }
+    }
+  }
 };
 </script>
 

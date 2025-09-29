@@ -15,8 +15,13 @@ export default {
       const crumbs = [{ title: "Dashboard", to: "/" }]
 
       switch (route.name) {
-        case "leads":
+        case "leads_view":
+          crumbs.push({ title: "Leads", to: "/leads/leads_view" })
+      
+          break;
+        case "leads_details":
           crumbs.push({ title: "Leads", to: "/leads" })
+          crumbs.push({ title: "Details", to: "/leads/leads_details" })
           break
         case "quotes":
           crumbs.push({ title: "Quotes", to: "/quotes" })

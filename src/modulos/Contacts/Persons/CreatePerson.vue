@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <header-title :titulo="'Create Person'" :botaoTexto="'Save Person'" :rota="'contacts-create-person'"/>
+    <header-title :titulo="'Create Person'" :botaoTexto="'Save Person'" @action-button="saveNewPerson"/>
 
     <v-card class="pa-4">
       <v-form>
@@ -32,13 +32,13 @@
               hide-details
             ></v-select>
           </v-col>
-          <v-col cols="1" class="d-flex  justify-center align-center">
+          <v-col cols="1" class="d-flex justify-center align-center">
             <v-icon
-              v-if="person.emails.length > 1"              
+              v-if="person.emails.length > 1"
               @click="removeField('emails', index)"
             >
-          <span class="icon icon-trash text-xl"></span>
-          </v-icon>
+              <span class="icon icon-trash text-xl"></span>
+            </v-icon>
           </v-col>
         </v-row>
         <v-btn color="primary" @click="addEmailField" class="mt-2">
@@ -65,13 +65,13 @@
               hide-details
             ></v-select>
           </v-col>
-          <v-col cols="1" class="d-flex  justify-center align-center">
+          <v-col cols="1" class="d-flex justify-center align-center">
             <v-icon
-              v-if="person.contactNumbers.length > 1"              
+              v-if="person.contactNumbers.length > 1"
               @click="removeField('contactNumbers', index)"
             >
-          <span class="icon icon-trash text-xl"></span>
-          </v-icon>
+              <span class="icon icon-trash text-xl"></span>
+            </v-icon>
           </v-col>
         </v-row>
         <v-btn color="primary" @click="addContactField" class="mt-2">
@@ -87,21 +87,28 @@
           class="mt-4"
         ></v-text-field>
 
-        <v-select
-          v-model="person.salesOwner"
-          label="Sales Owner"
-          :items="['Click to add']"
-          variant="outlined"
-          density="comfortable"
-        ></v-select>
 
-        <v-select
-          v-model="person.organization"
-          label="Organization"
-          :items="['Click to add']"
-          variant="outlined"
-          density="comfortable"
-        ></v-select>
+    <v-select
+      v-model="person.sales_owner_user_id"
+      label="Sales Owner"
+      :items="usersList"
+      item-title="name"
+      item-value="id"
+      variant="outlined"
+      density="comfortable"
+      clearable
+    ></v-select>
+
+    <v-select
+      v-model="person.organization_id"
+      label="Organization"
+      :items="organizationsList"
+      item-title="name"
+      item-value="id"
+      variant="outlined"
+      density="comfortable"
+      clearable
+    ></v-select>
       </v-form>
     </v-card>
   </v-container>
@@ -109,9 +116,9 @@
 
 <script>
 import HeaderTitle from '../../Layout/HeaderTitle.vue';
-import { defineComponent } from 'vue';
+import axios from "@/services/axios";
 
-export default defineComponent({
+export default {
   name: "CreatePerson",
   components: {
     HeaderTitle,
@@ -123,9 +130,11 @@ export default defineComponent({
         emails: [{ value: '', type: 'Work' }],
         contactNumbers: [{ value: '', type: 'Work' }],
         jobTitle: '',
-        salesOwner: null,
-        organization: null,
+        sales_owner_user_id: null, 
+        organization_id: null,
       },
+      usersList: [],
+      organizationsList: [],
     };
   },
   methods: {
@@ -138,11 +147,37 @@ export default defineComponent({
     removeField(fieldName, index) {
       this.person[fieldName].splice(index, 1);
     },
-    saveNewPerson(){
-      console.log(this.person)
+    async fetchDependencies() {
+      const apiUrl = process.env.VUE_APP_API_URL;
+      
+      try {
+        const [usersRes, orgsRes] = await Promise.all([
+          axios.get(`${apiUrl}/users`),
+          axios.get(`${apiUrl}/organizations`)
+        ]);
+
+        this.usersList = usersRes.data;
+        this.organizationsList = orgsRes.data;
+      } catch (error) {
+        console.error("Erro ao carregar dependências:", error);
+      }
+    },
+    async saveNewPerson() {
+      try {
+        const response = await axios.post("/persons", this.person);
+        console.log("pessoa salva", response.data);
+        alert("salvou");
+        this.$router.push({ name: 'contacts-persons' });
+      } catch (error) {
+        console.error("Erro ao salvar", error.response?.data || error.message);
+        alert("Erro ao salvar pessoa");
+      }
     }
   },
-});
+    mounted() {
+    this.fetchDependencies();
+  },
+};
 </script>
 
 <style scoped>
@@ -164,6 +199,6 @@ export default defineComponent({
 }
 
 .email-type-select-col, .contact-type-select-col {
-  padding-right: 0 !important; /* Remove o padding da coluna do select */
+  padding-right: 0 !important;
 }
-</style> 
+</style>

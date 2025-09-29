@@ -12,6 +12,7 @@ import MailSent from '@/modulos/Mail/Sent/MailSent.vue'
 import ContactsPersons from '@/modulos/Contacts/Persons/ContactsPersons.vue'
 import ContactsOrganizations from '@/modulos/Contacts/Organizations/ContactsOrganizations.vue'
 import CreatePerson from '@/modulos/Contacts/Persons/CreatePerson.vue'
+import LeadsDetails from '@/modulos/Leads/LeadsDetails.vue'
 
 const routes = [
   {
@@ -22,7 +23,19 @@ const routes = [
   {
     path: '/leads',
     name: 'leads',
-    component: Leads
+    redirect: { name: 'leads_view' },
+    children: [
+      {
+        path: '',
+        name: 'leads_view',
+        component: Leads
+      },
+      {
+        path: ':id',
+        name: 'leads_details',
+        component: LeadsDetails
+      }
+    ]
   },
 
   {
