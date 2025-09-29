@@ -73,9 +73,9 @@
           </div>
         </template>
         
-        <template #item.organization="{ item }">
-          {{ item.organization }}
-        </template>
+    <template #item.organization="{ item }">
+      {{ item.organization ? item.organization.name : 'N/A' }}
+    </template>
 
         <template #item.actions="{ item }">
           <div class="d-flex align-center ga-2">

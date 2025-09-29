@@ -163,8 +163,10 @@ export default {
       }
     },
     async saveNewPerson() {
+     const payload = this.person;
+    console.log("Payload de Envio:", payload);
       try {
-        const response = await axios.post("/persons", this.person);
+        const response = await axios.post("/persons", payload);
         console.log("pessoa salva", response.data);
         alert("salvou");
         this.$router.push({ name: 'contacts-persons' });
